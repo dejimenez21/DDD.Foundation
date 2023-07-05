@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>DDD.CommonKit</id>
+    <version>0.1.0</version>
+    <authors>DDD.CommonKit</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net7.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\dejim\source\repos\DDD.CommonKit\bin\Release\net7.0\DDD.CommonKit.dll" target="lib\net7.0\DDD.CommonKit.dll" />
+  </files>
+</package>
