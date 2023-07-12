@@ -1,5 +1,5 @@
-# DDD.Foundation
-DDD.Foundation is a NuGet package providing a set of foundational classes for implementing Domain-Driven Design (DDD). 
+# Djimenez.DDD.Foundation
+Djimenez.DDD.Foundation is a NuGet package providing a set of foundational classes for implementing Domain-Driven Design (DDD). 
 The package includes base classes for Entities, Value Objects, and Enumerations. It also introduces a mechanism for error 
 handling through the Result and Error classes.
 
@@ -8,6 +8,7 @@ The package contains the following classes, grouped by their folders:
 
 ### Domain
 - `Entity`: An abstract base class for DDD entities with a unique identifier of type `Guid`.
+- `ValueObject`: An abstract base class for DDD value objects. It overrides `Equals`, `GetHashCode`, and operators for correct equality comparison.
 - `Enumeration`: An abstract base class for creating enumeration classes that allow you to handle enumerated values in a DDD context.
 
 ### Results
@@ -45,6 +46,31 @@ public class User : Entity
 var user1 = new User(Guid.NewGuid());
 var user2 = new User(user1.Id);
 Console.WriteLine(user1 == user2); // Prints: True
+```
+
+### ValueObjext
+```csharp
+public class Address : ValueObject
+{
+    public string Street { get; }
+    public string City { get; }
+
+    public Address(string street, string city)
+    {
+        Street = street;
+        City = city;
+    }
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Street;
+        yield return City;
+    }
+}
+
+var address1 = new Address("Main St", "NYC");
+var address2 = new Address("Main St", "NYC");
+Console.WriteLine(address1 == address2); // Prints: True
 ```
 
 ### Enumeration
