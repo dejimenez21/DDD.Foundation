@@ -1,5 +1,5 @@
-# Djimenez.DDD.Foundation
-Djimenez.DDD.Foundation is a NuGet package providing a set of foundational classes for implementing Domain-Driven Design (DDD). 
+# DDD Foundation
+A NuGet package providing a set of foundational classes for implementing Domain-Driven Design (DDD). 
 The package includes base classes for Entities, Value Objects, and Enumerations. It also introduces a mechanism for error 
 handling through the Result and Error classes.
 
@@ -20,13 +20,13 @@ The package contains the following classes, grouped by their folders:
 To install the package, run the following command in the Package Manager Console:
 
 ```shell
-Install-Package Djimenez.DDD.Foundation
+Install-Package DDD.Foundation
 ```
 
 or, if you prefer to use the dotnet CLI:
 
 ```shell
-dotnet add package Djimenez.DDD.Foundation
+dotnet add package DDD.Foundation
 ```
 
 ## Usage
