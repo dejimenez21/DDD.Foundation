@@ -27,7 +27,7 @@ jobs:
       run: dotnet build --no-restore -c Release
       
     - name: Pack
-      run: dotnet pack --no-build -c Release -o out
+      run: dotnet pack --no-build -c Release -o ${{ github.workspace }}/out
       
     - name: Push to NuGet Staging
-      run: dotnet nuget push out/*.nupkg -k ${{ secrets.NUGET_STAGING_API_KEY }} -s https://int.nugettest.org/api/v2/package
+      run: dotnet nuget push ${{ github.workspace }}/out/*.nupkg -k ${{ secrets.NUGET_STAGING_API_KEY }} -s https://int.nugettest.org/api/v2/package
