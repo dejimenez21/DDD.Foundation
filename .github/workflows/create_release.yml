@@ -18,7 +18,12 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '5.0.x' # Change this to your project's .NET version
+        dotnet-version: '7.0.x'
+
+    - name: Install hub
+      run: |
+        sudo apt-get update
+        sudo apt-get install hub
 
     - name: Extract Version from .csproj
       id: get_version
