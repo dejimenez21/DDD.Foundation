@@ -6,11 +6,12 @@ name: Deploy to NuGet
 on:
   push:
     branches: [ "main" ]
-
+    paths:
+    - 'src/*.csproj'  # Only run if a .csproj file is modified
+    
 jobs:
   build:
-
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
