@@ -1,0 +1,43 @@
+name: Create GitHub Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/DDD.Foundation/**.csproj'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x' # Change this to your project's .NET version
+
+    - name: Extract Version from .csproj
+      id: get_version
+      run: |
+        version=$(grep -oP '(?<=<Version>).*?(?=</Version>)' src/DDD.Foundation/DDD.Foundation.csproj)
+        echo "Package version: $version"
+        echo "::set-output name=version::$version"
+
+    - name: Generate Release Notes
+      id: generate_notes
+      run: |
+        release_notes=$(hub pr list -s merged -L 1 -f "* %t%n")
+        echo "Release Notes: $release_notes"
+        echo "::set-output name=notes::$release_notes"
+
+    - name: Create GitHub Release
+      uses: gh-actions/github-release@v1
+      with:
+        api_token: ${{ secrets.GITHUB_TOKEN }}
+        name: Release ${{ steps.get_version.outputs.version }}
+        tag_name: v${{ steps.get_version.outputs.version }}
+        prerelease: false 
