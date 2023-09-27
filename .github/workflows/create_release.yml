@@ -5,8 +5,10 @@ on:
     branches:
       - main
     paths:
-      - 'src/DDD.Foundation/**.csproj'
-
+      - 'src/**/*.csproj'
+      
+  workflow_dispatch:
+  
 jobs:
   build:
     runs-on: ubuntu-latest
