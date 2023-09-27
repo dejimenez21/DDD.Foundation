@@ -1,4 +1,4 @@
-namespace DDD.CommonKit.Domain;
+namespace DDD.Foundation.Domain;
 
 public abstract class Entity
 {
@@ -11,11 +11,11 @@ public abstract class Entity
 
     public override bool Equals(object? obj)
     {
-        if(obj == null) return false;
-        if(this.GetType() != obj.GetType()) return false;
-        
+        if (obj == null) return false;
+        if (GetType() != obj.GetType()) return false;
+
         var other = obj as Entity;
-        return this.Id == other?.Id;
+        return Id == other?.Id;
     }
 
     public override int GetHashCode()
