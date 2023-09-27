@@ -7,8 +7,10 @@ on:
   push:
     branches: [ "main" ]
     paths:
-    - 'src/**/*.csproj'  # Only run if a .csproj file is modified
+    - 'src/**/*.csproj'
     
+  workflow_dispatch:
+  
 jobs:
   build:
     runs-on: ubuntu-latest
