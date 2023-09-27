@@ -7,7 +7,7 @@ on:
   push:
     branches: [ "main" ]
     paths:
-    - 'src/**/*.csproj'
+      - 'src/**/*.csproj'
     
   workflow_dispatch:
   
@@ -17,20 +17,23 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
+        
     - name: Restore dependencies
       run: dotnet restore
+      
     - name: Clean
       run: dotnet clean -c Release
+      
     - name: Build
       run: dotnet build --no-restore -c Release
+      
     - name: Pack
-      run: dotnet pack --no-build -c Release -o out
-    - name: Push to NuGet.org
-      uses: rohith/publish-nuget@v2
-      with:
-        PROJECT_FILE_PATH: src/DDD.Foundation/DDD.Foundation.csproj
-        NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
+      run: dotnet pack --no-build -c Release -o ${{ github.workspace }}/out
+        
+    - name: Push to NuGet Production
+      run: dotnet nuget push ${{ github.workspace }}/out/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
