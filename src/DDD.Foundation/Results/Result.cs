@@ -1,4 +1,4 @@
-namespace DDD.Results.CommonKit;
+namespace DDD.Foundation.Results;
 
 public class Result
 {

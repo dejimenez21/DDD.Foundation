@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace DDD.CommonKit.Domain;
+namespace DDD.Foundation.Domain;
 
 public abstract class Enumeration
 {
